@@ -29,6 +29,4 @@ if nr_letters > 0 and nr_symbols > 0 and nr_numbers > 0:
     print(password)
     
 else:
-    print("Invalid input")
-
-
+    print("Invalid input")    
