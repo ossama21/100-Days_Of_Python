@@ -34,7 +34,6 @@ while True:
         if all(letter in guessed_letters for letter in word):
             print("Congratulations! You've guessed the word:", word)
             break
-  
     elif user_choice not in word:
         print('Wrong guess')
         wrong_guess += 1

@@ -1,52 +1,29 @@
-import random
+alphabet = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z', 'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z']
 
-guessed_letters=[]
-the_words = ['python', 'java', 'kotlin', 'javascript','laptops','tablets','phones','rap','jazz']
-wrong_guess = 0
-max_wrong_guesses= 5
-def hangman():
+direction = input("Type 'encode' to encrypt, type 'decode' to decrypt: ")
+text = input("Type your message: ").lower()
+shift = int(input("Type the shift number: "))
+
+def encrepted (text, shift):
+    encrepted_message = ""
+    for letter in text:
+        i = alphabet.index(letter)
+        p = i+shift
+        n_p = alphabet[p]
+        encrepted_message += n_p
+    print (f"the encrepted message is {encrepted_message}")
+def decreted (text, shift):
+    decreted_message = ""
+    for letter in text:
+        i = alphabet.index(letter)
+        p = i-shift
+        n_p = alphabet[p]
+        decreted_message += n_p
+    print (f"the decreted message is {decreted_message}")
     
-    stages = ["",
-              "__________          ",
-              "|        |      ",
-              "|        |        ",
-              "|        O        ",
-              "|       /|\       ",
-              "|       / \       ",
-              "|                  "]
-    
-word = random.choice(the_words)
-print('H-A-N-G-M-A-N')
-play = input("Welcome to Hangman. Do you want to play? (Y/N) ").lower()
-print('pssst, the solution is ', word)
-while True:
-    
-    if play == 'n':
-        print('Thank you for visiting. Bye!')
-        break
-    elif play == 'y':
-        user_choice = input('Enter a letter that you think is in the word: ').lower()
-        display_word = ''.join([letter if letter in guessed_letters else '_' for letter in word])
-        print("Word you guessed:", display_word)
-    
-    if len(user_choice) != 1 or not user_choice.isalpha():
-        print("Please enter a single letter.")
-        continue
-    
-    guessed_letters.append(user_choice)
-    
-    if user_choice in word:
-        print('Right guess')
-        if all(letter in guessed_letters for letter in word):
-            print("Congratulations! You've guessed the word:", word)
-            break
-  
-    elif user_choice not in word:
-        print('Wrong guess')
-        wrong_guess += 1
-        print('Gesses Left: ', max_wrong_guesses - wrong_guess)
-        if wrong_guess >= max_wrong_guesses:
-            print('Wrong guesses: ', wrong_guess)
-            print('You lose')
-            print('The word is', word)
-            break
+if direction == "encode":
+    encrepted(text, shift)
+elif direction == "decode":
+    decreted(text, shift)
+else:
+    print("invalid input")
